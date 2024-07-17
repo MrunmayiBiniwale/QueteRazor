@@ -1,0 +1,46 @@
+﻿@model List<QueteRazor.Models.Expenditure>
+
+@{
+    var total = 0.0;
+    foreach(var expenditure in Model)
+    {
+        total = total + expenditure.ExpenditurePrice;
+    }
+}
+
+<html>
+    <head>
+        <title>Expenditures</title>
+    </head>
+    <body>
+        <div>
+        <h4>Expenditures : </h4>
+        @if(Model is not null && Model.Count > 0)
+        {
+            <table border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                </tr>
+                @foreach(var exp in Model)
+                {
+                    <tr>
+                        <td>@exp.ExpenditureName</td>
+                        <td>@exp.ExpenditureDate</td>
+                        <td>@exp.ExpenditurePrice</td>
+                    </tr>                    
+                }
+                <tr>
+                   <td>Total : </td>
+                   <td colspan="2">@total</td>
+                </tr>
+            </table>
+        }
+        else
+        {
+            <p>List is empty.</p>
+        }            
+        </div>
+    </body>
+</html>
